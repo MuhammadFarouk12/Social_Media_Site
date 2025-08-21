@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Social Site</title>
     <script src='./node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+    <script src='./node_modules/axios/dist/axios.min.js'></script>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
   </head>
@@ -25,45 +26,79 @@
             </li>
           </ul>
           <div class="d-flex w-100 justify-content-end">
-            <button type="button" class="mx-3 btn btn-outline-primary">Login</button>
-            <button type="button" class="btn btn-outline-success">Register</button>
+            <button id='loginButton' type="button" class="mx-3 btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
+            <button id='registerButton' type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registerModal" >Register</button>
+            <button id='logoutButton' type="button" class="btn btn-outline-danger d-none" onclick='logoutButtonClick()' >logout</button>
           </div>
         </div>
       </div>
     </nav>
 
-
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="registerModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Username</label>
+                <input id='username-input' type="text" class="form-control" id="recipient-name">
+              </div>    
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Password</label>
+                <input id='password-input'type="password" class="form-control" id="message-text"/>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="loginButtonClick()">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- start posts -->
         <div class="container mt-5">
-          <div id="posts" class='d-flex justify-content-center'>
-          <!-- start The Post   -->
-          <div class="col-6">
-            <div class="card shadow mb-3">
-              <div class="card-header">
-              <img src="https://placehold.co/50/323892/609294?text=FK" class='img-thumbnail rounded-circle' alt="hello">
-              <h6 class='d-inline'>@Ahmed</h4>
-                <!-- Featured -->
+          <div id="posts" class='d-flex align-items-center' style="flex-direction: column">
+        <!-- JavaScript Code Comes Here -->
+        </div>
+    <!-- End posts -->
+      <!-- Start The Registration Model -->
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registration</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="card-body">
-               <img src="https://placehold.co/600x300" alt=""> 
-              <h6 class='text-primary mt-3'>2 mins ago</h6>
-              <h5>Hello World</h5>
-              <p>Hello World Hello World Hello WWorld Hello World Hello World Hello World Hello World World Hello World Hello World Hello World Hello World World Hello World Hello World Hello World Hello World World Hello World Hello World Hello World Hello World World Hello World Hello World Hello World Hello World orld Hello World Hello World Hello World Hello World </p>
-              <hr>
-              <div>
-                  <i>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
-                      <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
-                    </svg>
-                  </i>
-                <span>Comments</span>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">User Name</label>
+                    <input type="text" class="form-control" id="username">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Password</label>
+                    <input type='password' class="form-control" id="password_input"/>
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-name" class="col-form-label">Name</label>
+                    <input type='text' class="form-control" id="name_input"/>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" onclick="registerButtonClick()">Register</button>
               </div>
             </div>
           </div>
-          <!-- End The Post   -->
-          </div>
         </div>
-    <!-- End posts -->
+      <!-- End The Registration Model -->
+      <script src="./app.js"></script>
   </body>
 </html>
 
