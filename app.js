@@ -1,8 +1,11 @@
 const baseURL = `https://tarmeezacademy.com/api/v1`
-axios.get('https://tarmeezacademy.com/api/v1/posts?limit=50')
+// axios.get('https://tarmeezacademy.com/api/v1/posts?limit=50')
+setUpNavbar()
+axios.get('https://tarmeezacademy.com/api/v1/tags/1/posts')
 .then(response=>{
     let posts = response.data.data
-    // console.log(posts)
+    let postId = 0
+    let tags = ''
     for (const post of posts) {
       let content =
         `
@@ -18,6 +21,8 @@ axios.get('https://tarmeezacademy.com/api/v1/posts?limit=50')
               <h5>${post.title || "Hello"}</h5>
               <p>${post.body}</p>
               <hr>
+              <div class='tagsContainer'></div>
+              <hr>
               <div>
                   <i>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
@@ -32,8 +37,13 @@ axios.get('https://tarmeezacademy.com/api/v1/posts?limit=50')
           </div>
                   `
         document.getElementById("posts").innerHTML += content
+        for (const tag of post.tags) {
+            document.querySelectorAll('.tagsContainer')[postId].innerHTML += `<span class='bg-secondary p-2 m-1 text-white rounded-1'>${tag.name}</span>`
+        }
+      postId++
     }
   })
+
 
 
 function loginButtonClick() {
